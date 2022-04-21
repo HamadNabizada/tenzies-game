@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import Tenzies from './Tenzies'
 import styles from './styles.css'
 
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<Tenzies />, document.getElementById('root'))
