@@ -19,6 +19,12 @@ export default function Tenzies(){
     let diceElements = sixDiceArray.map((item,index) =>{
         return <Dice key={index} value={item}/>
     })
+    
+    function generateNewDice(){
+        setSixDiceArray(prevArray => {
+            return getRandomDice(10)
+        })
+    }
 
     return (
         <section className="tenzies-wrapper">
@@ -26,6 +32,7 @@ export default function Tenzies(){
                 <div className="dice-wrapper">
                     {diceElements}
                 </div>
+                <button onClick={generateNewDice} className="rollBtn">Roll</button>
             </div>
         </section>
     )

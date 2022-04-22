@@ -34,7 +34,7 @@ html{
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .dice-wrapper{
     display:flex;
@@ -56,5 +56,18 @@ html{
     border-radius: 3.8px;
     font-weight: 700;
     font-size: 4rem;
+    cursor: pointer;
+}
+.rollBtn{
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 4rem;
+    width: 20rem;
+    height: 7rem;
+    color:white;
+    background-color: #5035ff;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
