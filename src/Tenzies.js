@@ -18,7 +18,7 @@ export default function Tenzies(){
 
     let [sixDiceArray, setSixDiceArray] = useState(getRandomDice(10))
     let diceElements = sixDiceArray.map((item) =>{
-        return <Dice key={item.id} value={item.value}/>
+        return <Dice key={item.id} value={item.value} isHeld={item.isHeld}/>
     })
 
     function generateNewDice(){
