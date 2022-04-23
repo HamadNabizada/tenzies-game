@@ -15,16 +15,36 @@ export default function Tenzies(){
         }
         return diceArray
     }
+    function toggleHold(id){
+        setSixDiceArray( prevArray =>{
+            let newDiceArray = prevArray.map( die =>{
+                return die.id === id ? 
+                    {...die, isHeld: !die.isHeld} :
+                    {...die}
+            })
+            return newDiceArray
+        })
+    }
 
     let [sixDiceArray, setSixDiceArray] = useState(getRandomDice(10))
     let diceElements = sixDiceArray.map((item) =>{
-        return <Dice key={item.id} value={item.value} isHeld={item.isHeld}/>
+        return <Dice handleClick={() => toggleHold(item.id)} key={item.id} value={item.value} isHeld={item.isHeld}/>
     })
 
     function generateNewDice(){
-        setSixDiceArray(getRandomDice(10))
+        setSixDiceArray( prevArray =>{
+            let newArray = prevArray.map(die =>{
+                if(die.isHeld === false){
+                    let newDie = getRandomDice(1)[0]
+                    return {...newDie}
+                }
+                else{
+                    return {...die}
+                }
+            })
+            return newArray
+        })
     }
-    
 
     return (
         <section className="tenzies-wrapper">
