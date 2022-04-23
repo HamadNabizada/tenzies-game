@@ -25,11 +25,33 @@ export default function Tenzies(){
             return newDiceArray
         })
     }
+    let [gameOver, setGameOver] = useState(false)
 
     let [sixDiceArray, setSixDiceArray] = useState(getRandomDice(10))
     let diceElements = sixDiceArray.map((item) =>{
         return <Dice handleClick={() => toggleHold(item.id)} key={item.id} value={item.value} isHeld={item.isHeld}/>
     })
+    
+    useEffect(() =>{
+        let checkIsHeld = true
+        let checkValue = true
+        sixDiceArray.forEach( die =>{
+            !die.isHeld && (checkIsHeld = false )
+        })
+        if(checkIsHeld){
+            checkValue = checkAllValue(sixDiceArray)
+            checkValue && setGameOver(true)
+        }
+    }, [sixDiceArray])
+
+    function checkAllValue(diceArray){
+        let doNumMatch = true
+        let tempValue = diceArray[0].value
+        diceArray.forEach(die =>{
+            !(die.value === tempValue) && (doNumMatch = false)
+        })
+        return doNumMatch
+    }
 
     function generateNewDice(){
         setSixDiceArray( prevArray =>{
@@ -45,14 +67,23 @@ export default function Tenzies(){
             return newArray
         })
     }
+    let btnStyle= {
+        fontSize: gameOver ? '3rem' : '4rem'
+    }
+    function generateNewGame(){
+        setGameOver(false)
+        setSixDiceArray(getRandomDice(10))
+    }
 
     return (
         <section className="tenzies-wrapper">
             <div className="game-wrapper">
+            <h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
                 <div className="dice-wrapper">
                     {diceElements}
                 </div>
-                <button onClick={generateNewDice} className="rollBtn">Roll</button>
+                <button style={btnStyle} onClick={gameOver ? generateNewGame:generateNewDice} className="rollBtn">{gameOver ? 'New Game' : 'Roll'}</button>
             </div>
         </section>
     )

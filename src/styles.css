@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Karla:wght@700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 *{
     box-sizing: border-box;
     margin:0;
@@ -73,4 +73,15 @@ html{
 }
 .isHeld{
     background-color: #59E391;
+}
+.title{
+    font-size: 6rem;
+}
+.instructions{
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    width: 55rem;
+    text-align: center;
+    color: #4A4E74;
 }
